@@ -4,247 +4,250 @@
 
 This repository is designed for AI-assisted development.
 
-Agents must prioritize:
+Agents should optimize for:
 
 - correctness
-- clarity
 - minimal scope changes
-- testability
+- clear reasoning
+- testable outcomes
 - maintainability
-- optimization for AI-agent workflows
+- low future context cost
 
----
+Use this file as the routing index. Load detailed playbooks only when they are relevant to the task.
 
-## Required Reading Before Any Task
+## Non-Negotiable Rules
 
-Always read:
-
-1. `docs/ARCHITECTURE.md`
-2. relevant feature in `product/features/`
-3. relevant task in `project/backlog/`
-4. `context/test-strategy.md` (if exists)
-
----
-
-## Core Rules
-
-- Do not implement anything outside task scope.
+- Work only inside the requested scope.
+- Do not invent requirements.
 - Do not refactor unrelated code.
-- Do not invent requirements not present in task or feature.
-- Prefer minimal, safe changes over large rewrites.
-- Keep module boundaries defined in `docs/ARCHITECTURE.md`.
+- Do not overwrite user changes.
+- Preserve architecture boundaries.
+- Prefer the smallest safe change.
+- Prefer project-defined commands over ad hoc commands.
+- Keep all repository content in English.
+- Do not commit unless explicitly requested.
+- Do not add dependencies unless they are clearly justified.
 
----
+## Context Loading
 
-## Agent Optimization Rules
+Load context lazily. For every task, read:
 
-This repository is optimized for AI-assisted and agent-based development.
+1. the task file, if the request names or implies one
+2. directly affected files
+3. local README files or module docstrings near affected code, if present
 
-Agents should minimize unnecessary future context consumption.
+Additionally read:
 
-Rules:
+- `docs/ARCHITECTURE.md` for architectural, cross-module, or dependency changes
+- `product/features/` for feature behavior changes
+- `docs/TASK_SEQUENCE.md` when selecting, sequencing, adding, removing, or moving tasks
+- `context/test-strategy.md` when adding tests or changing test strategy
+- `docs/agent/workflow.md` for task execution details
+- `docs/agent/testing.md` for test strategy and AI/LLM testing guidance
+- `docs/agent/release.md` for version, changelog, commit, or release work
+- `docs/agent/documentation.md` for documentation expectations
+- `docs/agent/architecture.md` for module boundary decisions
+- `docs/agent/security.md` for secrets, dependency, auth, or external I/O work
+- `docs/agent/review.md` for code review tasks
 
-- Write documentation continuously during development.
-- Document architecture decisions, module responsibilities, important flows, and non-obvious behavior.
-- Prefer creating or updating local documentation near the code instead of relying on future code re-reading.
-- Keep documentation concise, structured, and easy for another agent to scan quickly.
-- Add examples where they significantly reduce future reasoning cost.
-- Maintain clear public APIs and module boundaries.
+Do not read every repository document by default.
 
-When possible:
+## No-Op Rule
 
-- Prefer mature third-party libraries over custom implementations.
-- Avoid reinventing standard infrastructure or utility logic.
-- Minimize total code volume while preserving clarity and maintainability.
-- Choose solutions that reduce future cognitive load for agents.
+Doing nothing is a valid successful outcome.
 
-Goal:
+Before changing code, check whether:
 
-- reduce token usage
-- reduce repeated repository scanning
-- reduce duplicated reasoning
-- improve implementation consistency between agents
+- the requested behavior already exists
+- the issue is already fixed
+- the task is obsolete
+- the requested change belongs in documentation, tests, or backlog instead of production code
 
----
+If no code change is needed, explain why and stop.
 
-## Code Quality
+## Scope Discipline
 
-- Follow clean, explicit, and maintainable style.
-- Prefer clarity over cleverness.
-- Use type hints where reasonable.
-- Every module, class, and function must include a docstring.
+- Implement only what the task or user request asks for.
+- Keep unrelated cleanup out of the change.
+- Make narrow edits in the modules that own the behavior.
+- Prefer explicit code over clever or implicit behavior.
 - Keep functions small and single-purpose.
-- Avoid implicit behavior and magic values.
+- Use type hints where they improve clarity.
+- Prefer mature libraries over custom infrastructure when a dependency is justified.
+- Prefer the standard library when it is sufficient.
 
----
+## Documentation Policy
 
-## Documentation Standards
+Documentation is a context cache for future agents.
 
-Documentation is mandatory.
+- Document public APIs, module responsibilities, architecture decisions, important flows, assumptions, limitations, integration points, and non-obvious behavior.
+- Prefer local documentation near the code over forcing future agents to re-read large areas.
+- Keep documentation concise and structured.
+- Do not turn `AGENTS.md` into the context cache; add focused docs under `docs/`, local READMEs, ADRs, or module docstrings.
 
-Agents should document:
+Docstrings:
 
-- module responsibilities
-- architecture boundaries
-- public APIs
-- important data flows
-- assumptions
-- limitations
-- integration points
-- non-obvious implementation details
+- Public modules, public classes, public functions, and non-obvious private helpers must have docstrings.
+- Trivial private helpers do not need docstrings when names and type hints are sufficient.
+- Avoid docstrings that repeat the function name.
+- Prefer docstrings that explain purpose, assumptions, side effects, edge cases, or integration behavior.
 
-Preferred documentation locations:
+See `docs/agent/documentation.md`.
 
-- module-level docstrings
-- `docs/`
-- ADRs
-- README files near complex modules
+## Workflow
 
-Documentation should optimize future agent understanding and reduce the need for full codebase traversal.
+For implementation tasks:
 
----
-
-## Dependencies
-
-- Use Poetry.
-- Do not add dependencies unless clearly justified.
-- Prefer standard library when possible.
-- However, if a stable and widely adopted third-party library significantly reduces custom code, prefer the library solution.
-- Favor libraries that improve maintainability and reduce implementation complexity.
-
----
-
-## Language
-
-This project is **English-only**:
-
-- code
-- comments
-- docstrings
-- commits
-- documentation
-- agent communication
-
----
-
-## Task Workflow
+1. Load only the relevant context.
+2. Check whether a no-op is appropriate.
+3. Identify affected modules and tests.
+4. Make the smallest safe change.
+5. Update relevant documentation.
+6. Run relevant verification.
+7. Report what changed and what was verified.
 
 Tasks are stored in `project/backlog/`.
 
-When implementing a task:
+When implementing a backlog task:
 
-1. Read the task and related feature.
-2. Implement only what is defined in **Scope**.
-3. After completion:
-   - update task status to `done`
-   - move file to `project/done/`
+- Follow `docs/TASK_SEQUENCE.md` when task order matters.
+- Read the related feature only when behavior changes.
+- Implement only the task's Scope.
+- Satisfy the task's Done criteria.
+- After completion, update task status to `done` and move it to `project/done/`.
+- If backlog task files are added, removed, renamed, or moved, keep `docs/TASK_SEQUENCE.md` consistent.
 
-Do not modify unrelated tasks.
+See `docs/agent/workflow.md`.
 
-Agents should follow `docs/TASK_SEQUENCE.md` to determine correct execution order.
+## Bug Fix Protocol
 
-## Task Sequence Consistency
+For bug fixes:
 
-When tasks in `project/backlog/` change, update `docs/TASK_SEQUENCE.md`.
+1. Reproduce the bug or identify why reproduction is not possible.
+2. Add or update a failing test when practical.
+3. Implement the smallest fix.
+4. Verify the test now passes.
+5. Run relevant regression tests.
 
-Trigger conditions:
+If the bug cannot be reproduced, do not guess. Document the investigation and propose the next smallest step.
 
-- a task is added
-- a task is removed
-- a task identifier changes
+## Commands
 
-Rules:
+Prefer project-defined commands in this order:
 
-- keep `Order` aligned with backlog
-- update `Dependencies` if needed
-- do not leave references to non-existing tasks
+1. `justfile` commands, if present
+2. `Makefile` commands, if present
+3. commands documented in `README.md`
+4. direct Poetry commands as fallback
 
----
-
-## Testing
-
-Run tests via:
+Fallback examples:
 
 ```bash
 poetry run pytest
+poetry run ruff check .
+poetry run ruff format .
+poetry run mypy src
 ```
 
-Rules:
+Repository-defined commands take precedence over these examples.
 
-- Add or update tests for any behavior change.
-- Tests must be deterministic and fast.
+## Testing And Verification
+
+- Add or update tests for behavior changes.
+- Prefer deterministic, fast tests.
 - Test behavior, not implementation details.
+- Run the narrowest useful test first, then broader regression checks when risk justifies it.
+- If tests cannot be run, explain why and describe the remaining risk.
 
----
+See `docs/agent/testing.md`.
 
-## Versioning & Change Management (MANDATORY)
+## Release, Changelog, And Commits
 
-After every code change:
+Do not commit unless explicitly requested.
 
-### 1. Commit
+When asked to commit:
 
-Use Conventional Commits:
+- inspect the diff first
+- include only related files
+- use Conventional Commits
+- do not commit secrets
+- do not commit failing tests unless explicitly requested
 
-```bash
-type(scope): short description
-```
+Update version and `CHANGELOG.md` only for release-relevant changes.
 
-Examples:
+Release-relevant means:
 
-- `feat(api): add PDF text extraction`
-- `fix(cli): handle empty input`
-- `refactor(core): simplify pipeline`
+- user-visible behavior change
+- public API change
+- CLI behavior change
+- dependency change that affects users
+- task explicitly marked as release-relevant
+- actual release preparation
 
----
+Do not bump version or changelog for:
 
-### 2. Version bump
+- internal refactoring without behavior change
+- test-only changes
+- documentation-only changes
+- formatting
+- temporary implementation steps
 
-Follow Semantic Versioning:
+See `docs/agent/release.md`.
 
-- MAJOR → breaking changes
-- MINOR → new features
-- PATCH → fixes/refactors
+## Automation Boundary
 
-Update version in `pyproject.toml`.
+Use `AGENTS.md` for guidance.
 
----
+Use CI, hooks, scripts, or project commands for mandatory enforcement.
 
-### 3. Changelog
+Do not rely only on agent memory for:
 
-Update `CHANGELOG.md`:
+- formatting
+- linting
+- tests
+- secret scanning
+- version checks
+- changelog validation
+- generated file validation
 
-- describe change clearly
-- group under: Added / Changed / Fixed
+If a rule must always be enforced, add or use automation.
 
----
+## Security
 
-## What NOT to Do
+- Never commit secrets.
+- Avoid logging credentials, tokens, personal data, or sensitive inputs.
+- Treat dependency, network, filesystem, subprocess, authentication, and external I/O changes as security-relevant.
+- Validate inputs at trust boundaries.
 
-- Do not expand task scope.
-- Do not refactor unrelated code.
-- Do not skip tests.
-- Do not skip version bump or changelog.
-- Do not write vague commit messages.
-- Do not introduce undocumented behavior.
-- Do not create large custom utility layers when a stable library already solves the problem well.
+See `docs/agent/security.md`.
 
----
+## Reviews
 
-## When in Doubt
+For review tasks, prioritize:
 
-- Ask or make the smallest safe assumption.
-- Document assumptions explicitly.
-- Prefer small, well-defined changes.
+- correctness bugs
+- regressions
+- security issues
+- missing tests
+- maintainability risks
 
----
+List findings first, ordered by severity, with file and line references when possible.
 
-## Definition of Done
+See `docs/agent/review.md`.
 
-A task is done only if:
+## Final Response Requirements
 
-- implementation matches Scope
-- all Done criteria in task are satisfied
-- tests pass
-- no unrelated code was modified
-- version and changelog were updated
-- relevant documentation was updated
+Finish with:
+
+- a concise summary of changes
+- tests or verification run
+- any skipped checks and why
+- any remaining risks or follow-up that matters
+
+Do not claim tests passed unless they were run.
+
+## When In Doubt
+
+- Ask only when a safe assumption is not possible.
+- Prefer the smallest reversible step.
+- Document assumptions where future agents will find them.
