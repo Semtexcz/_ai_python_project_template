@@ -38,6 +38,8 @@ initial_version:
   help: Initial semantic version for the generated project.
   default: "0.1.0"
 
+_subdirectory: template
+
 _exclude:
   - .git
   - .pytest_cache

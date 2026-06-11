@@ -1,3 +1,10 @@
+## Unreleased
+
+### Changed
+
+- Moved generated project files into `template/` and configured Copier to render from that subdirectory.
+- Added a root README for the template repository while keeping the generated project README under `template/`.
+
 ## [0.2.0] - 2026-04-21
 
 ### Added
