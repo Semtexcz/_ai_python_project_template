@@ -42,6 +42,7 @@ Review changes carefully, especially if the generated project has modified:
 - `docs/`
 - `product/`
 - `project/`
+- `CHANGELOG.md`
 - `pyproject.toml`
 
 ## Parameterization Decisions
@@ -54,6 +55,7 @@ Kept static on purpose:
 - AI-agent workflow files
 - architecture and backlog structure
 - task and feature templates
+- prompts and scripts directories
 - Poetry-based tooling layout
 - CI baseline
 
@@ -65,3 +67,8 @@ Not parameterized on purpose:
 - language or framework selection
 
 If broader customization becomes necessary, prefer adding a second specialized template rather than turning this one into a highly branched meta-template.
+
+## Template Versioning
+
+The template repository version is stored in the root `VERSION` file and described in the root `CHANGELOG.md`.
+This is separate from `initial_version`, which sets the starting version for generated projects.

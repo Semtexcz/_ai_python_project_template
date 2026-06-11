@@ -19,6 +19,10 @@ Use this file to understand where code belongs and which boundaries must be pres
   - validation of behavior
   - unit, integration, e2e
 
+- `prompts/`
+  - reusable AI-agent prompts and prompt templates
+  - project-local workflow helpers, not a replacement for repository documentation
+
 - `scripts/`
   - project helper scripts
   - not main application logic unless explicitly intended

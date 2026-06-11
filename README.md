@@ -43,10 +43,18 @@ The generated project includes:
 - `docs/` for workflow, architecture, task sequencing, and ADRs
 - `product/` for PRDs, features, and user stories
 - `project/` for backlog tracking
+- `prompts/` for reusable project-local AI prompts
+- `scripts/` for project helper scripts
+- `CHANGELOG.md` for user-visible project changes
 - `src/` and `tests/` for implementation and validation
 - Poetry, ruff, mypy, pre-commit, and GitHub Actions configuration
 
 The actual generated project files live in `template/`. Root-level files describe and maintain this Copier template repository.
+
+## Versioning
+
+The template repository version is stored in `VERSION` and recorded in `CHANGELOG.md`.
+Generated projects have their own `initial_version` value and generated `CHANGELOG.md`.
 
 ## More Usage Details
 

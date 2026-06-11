@@ -1,9 +1,13 @@
-## Unreleased
+## [0.3.0] - 2026-06-11
 
 ### Changed
 
+- Introduced explicit template repository versioning with a root `VERSION` file.
 - Moved generated project files into `template/` and configured Copier to render from that subdirectory.
 - Added a root README for the template repository while keeping the generated project README under `template/`.
+- Added a generated project `CHANGELOG.md` to the template contents.
+- Moved `prompts/` and `scripts/` into the generated project template.
+- Added example prompt and script files to the generated `prompts/` and `scripts/` directories.
 
 ## [0.2.0] - 2026-04-21
 
