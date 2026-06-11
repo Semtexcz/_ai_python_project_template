@@ -44,6 +44,17 @@ It should answer:
 - what value it should create
 - what it explicitly should not do
 
+### `docs/CURRENT_STATE.md`
+
+Use for the current operational state of the project.
+
+Update it when:
+
+- the project phase changes
+- current focus changes
+- the next best step changes
+- constraints or open questions become relevant to planning
+
 ### `product/prds/PRD-*.md`
 
 Use a PRD when you need a clear product requirement before implementation begins.
@@ -123,6 +134,16 @@ It explains:
 
 When a task is clear but the code location is not, this document should resolve that uncertainty.
 
+### `docs/RISKS.md`
+
+Use this document to track active and resolved project risks.
+
+Update it when:
+
+- a meaningful risk is identified
+- mitigation changes
+- a risk is resolved
+
 ### `docs/decisions/ADR-*.md`
 
 ADRs are optional and should be used sparingly.
@@ -134,6 +155,12 @@ Write one when:
 - you want to record why one option was chosen
 
 Do not create ADRs for trivial implementation details.
+
+### `docs/conversations/YYYY-MM-DD-topic.md`
+
+Conversation summaries are archival notes from important AI-assisted project conversations.
+
+Use them to preserve useful context, then promote important information into the appropriate project document.
 
 ### `AGENTS.md`
 
@@ -245,6 +272,20 @@ A practical checkpoint is:
 - pushed branch passes CI
 
 That is a good "current state" milestone, even though the project itself continues.
+
+## Conversation-To-Project-Knowledge Flow
+
+Use this flow after important AI-assisted project conversations:
+
+1. Save a concise summary in `docs/conversations/`.
+2. Promote current facts into `docs/CURRENT_STATE.md`.
+3. Promote accepted decisions into `docs/decisions/`.
+4. Promote concrete work into `project/backlog/`.
+5. Update `docs/TASK_SEQUENCE.md` if task order or dependencies changed.
+6. Promote risks into `docs/RISKS.md`.
+
+Do not treat conversation summaries as the main source of truth.
+They are an archive of reasoning.
 
 ## How To Work With The AI Agent
 

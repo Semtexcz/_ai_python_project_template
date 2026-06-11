@@ -27,6 +27,17 @@ Use this file to understand where code belongs and which boundaries must be pres
   - project helper scripts
   - not main application logic unless explicitly intended
 
+## Documentation Layers
+
+- `docs/VISION.MD` — stable project intent
+- `docs/CURRENT_STATE.md` — current operational project state
+- `docs/ARCHITECTURE.md` — technical boundaries and structure
+- `docs/decisions/` — accepted architectural or product decisions
+- `docs/conversations/` — archived summaries of project conversations
+- `docs/RISKS.md` — active and resolved project risks
+- `product/` — product requirements and feature definitions
+- `project/backlog/` — executable implementation tasks
+
 ## Rules
 
 - Do not put application logic in markdown files, tests, or scripts.
