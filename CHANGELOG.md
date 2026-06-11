@@ -1,3 +1,15 @@
+## [0.4.0] - 2026-06-11
+
+### Added
+
+- Added a conversation-to-project-knowledge workflow for generated projects.
+- Added generated project state, risk, conversation summary, decision, prompt, and done-task documentation.
+- Added root `AGENTS.md` with template maintenance guidance.
+
+### Changed
+
+- Updated generated project agent, workflow, and architecture docs to distinguish archival conversation summaries from current project truth, accepted decisions, executable tasks, and risks.
+
 ## [0.3.0] - 2026-06-11
 
 ### Changed
