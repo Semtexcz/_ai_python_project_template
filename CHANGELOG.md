@@ -1,3 +1,9 @@
+## [0.5.3] - 2026-07-08
+
+### Fixed
+
+- Restored generation of the `.copier-answers.yml` file so generated projects can be updated with `copier update`.
+
 ## [0.5.2] - 2026-07-08
 
 ### Changed
