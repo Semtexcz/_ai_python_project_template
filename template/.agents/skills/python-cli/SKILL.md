@@ -12,7 +12,7 @@ Keep command-line entry points simple.
 - Keep CLI parsing thin.
 - Put business logic outside the CLI wrapper.
 - Test CLI behavior through the public command interface when practical.
-- Use `argparse` for simple CLIs.
-- Use Typer only when project needs justify the dependency.
-- Do not add Typer as a default dependency.
+- Prefer Typer for project CLIs.
+- Use `argparse` only when a stdlib-only CLI is explicitly preferred or the existing codebase already uses it.
+- Keep Typer usage thin and push business logic below the command layer.
 - Keep exit codes and error messages predictable.

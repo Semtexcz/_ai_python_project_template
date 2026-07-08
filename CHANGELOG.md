@@ -1,3 +1,9 @@
+## [0.5.2] - 2026-07-08
+
+### Changed
+
+- Updated the generated `python-cli` skill to prefer Typer as the default project CLI approach and reserve `argparse` for explicit stdlib-only cases.
+
 ## [0.5.1] - 2026-07-08
 
 ### Changed
