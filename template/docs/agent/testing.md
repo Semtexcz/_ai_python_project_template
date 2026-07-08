@@ -11,15 +11,15 @@ Use project-defined commands first:
 1. `justfile`
 2. `Makefile`
 3. `README.md`
-4. Poetry fallback commands
+4. uv fallback commands
 
 Common fallback commands:
 
 ```bash
-poetry run pytest
-poetry run ruff check .
-poetry run ruff format .
-poetry run mypy src
+uv run pytest
+uv run ruff check .
+uv run ruff format --check .
+uv run mypy src
 ```
 
 ## Test Strategy

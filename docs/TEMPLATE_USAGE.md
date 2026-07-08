@@ -23,7 +23,7 @@ Copier will prompt for a small set of values:
 - `project_slug` — repository and CLI-facing slug
 - `package_name` — Python package name under `src/`
 - `project_description` — short summary for README and package metadata
-- `author_name` and `author_email` — Poetry package metadata
+- `author_name` and `author_email` — package metadata
 - `python_version` — shared Python version for tooling and CI
 - `initial_version` — initial package version
 
@@ -56,7 +56,7 @@ Kept static on purpose:
 - architecture and backlog structure
 - task and feature templates
 - prompts and scripts directories
-- Poetry-based tooling layout
+- uv-based tooling layout
 - CI baseline
 
 Not parameterized on purpose:

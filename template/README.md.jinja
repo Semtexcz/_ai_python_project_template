@@ -16,15 +16,25 @@
 2. Capture architecture boundaries in `docs/`
 3. Break work into scoped tasks in `project/backlog/`
 4. Follow `docs/TASK_SEQUENCE.md`
-5. Implement in `src/{{ package_name }}/`
-6. Validate with `poetry run pytest`
+5. Use focused project skills from `.agents/skills/` when they match the task
+6. Implement in `src/{{ package_name }}/`
+7. Validate with `uv run pytest`
 
 For the full human-oriented playbook, see `docs/WORKFLOW.md`.
 
 ## Getting Started
 
 ```bash
-poetry install
-poetry run pytest
-poetry run {{ project_slug }}
+uv sync
+uv run pytest
+uv run {{ project_slug }}
+```
+
+## Common Commands
+
+```bash
+uv run ruff check .
+uv run ruff format .
+uv run mypy src
+uv run pytest
 ```

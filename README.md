@@ -1,13 +1,13 @@
 # AI Project Template
 
-Reusable Copier template for AI-first Python projects with a small Poetry package, pytest validation, and structured product, architecture, and task documentation.
+Reusable Copier template for AI-first Python projects with a compact uv package, pytest validation, and structured product, architecture, and task documentation.
 
 The generated project is intentionally compact. It gives AI coding agents enough workflow, architecture, and planning context to build in scoped increments without inventing process from scratch.
 
 ## Requirements
 
 - Python with Copier installed
-- Poetry
+- uv
 
 Install Copier if needed:
 
@@ -20,8 +20,8 @@ python -m pip install copier
 ```bash
 copier copy . my-project
 cd my-project
-poetry install
-poetry run pytest
+uv sync
+uv run pytest
 ```
 
 Copier asks for:
@@ -47,7 +47,7 @@ The generated project includes:
 - `scripts/` for project helper scripts
 - `CHANGELOG.md` for user-visible project changes
 - `src/` and `tests/` for implementation and validation
-- Poetry, ruff, mypy, pre-commit, and GitHub Actions configuration
+- uv, ruff, mypy, pre-commit, and GitHub Actions configuration
 
 The actual generated project files live in `template/`. Root-level files describe and maintain this Copier template repository.
 

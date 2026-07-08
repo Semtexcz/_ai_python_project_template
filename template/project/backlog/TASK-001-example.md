@@ -47,7 +47,7 @@ The project requires a stable dataset export so all analytical workflows operate
 
 ## Validation
 
-- Run: `poetry run pytest`
+- Run: `uv run pytest`
 - Verify: export creates file with expected structure
 - Verify: repeated runs produce identical output
 

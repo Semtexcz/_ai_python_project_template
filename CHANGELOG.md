@@ -1,3 +1,15 @@
+## [0.5.0] - 2026-07-08
+
+### Added
+
+- Added focused generated project skills under `.agents/skills/` for uv, quality checks, pytest, typing, CLI, and security workflows.
+
+### Changed
+
+- Switched generated projects from Poetry to uv with PEP 621 package metadata.
+- Shortened generated `AGENTS.md` into a routing-oriented repository guide.
+- Updated generated README, CI, scripts, task examples, testing docs, and template usage docs for uv commands.
+
 ## [0.4.0] - 2026-06-11
 
 ### Added
