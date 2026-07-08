@@ -17,8 +17,19 @@ python -m pip install copier
 
 ## Generate A Project
 
+From this local checkout:
+
 ```bash
 copier copy . my-project
+cd my-project
+uv sync
+uv run pytest
+```
+
+Or directly from GitHub:
+
+```bash
+copier copy gh:Semtexcz/_ai_python_project_template my-project
 cd my-project
 uv sync
 uv run pytest
@@ -59,3 +70,11 @@ Generated projects have their own `initial_version` value and generated `CHANGEL
 ## More Usage Details
 
 See `docs/TEMPLATE_USAGE.md`.
+
+## Update A Generated Project
+
+From inside a generated project:
+
+```bash
+copier update
+```

@@ -1,3 +1,9 @@
+## [0.5.1] - 2026-07-08
+
+### Changed
+
+- Documented GitHub-based project generation and Copier update commands in the template and generated project READMEs.
+
 ## [0.5.0] - 2026-07-08
 
 ### Added
