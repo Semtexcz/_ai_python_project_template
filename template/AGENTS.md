@@ -48,6 +48,8 @@ Read broader docs only when needed:
 
 Do not read the whole repository by default.
 
+For deeper process guidance, read the relevant file under docs/agent/ when a skill or task needs more detail.
+
 ## Workflow
 
 For implementation work:

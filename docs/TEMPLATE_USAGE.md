@@ -14,7 +14,7 @@ After generating a project, start with `docs/WORKFLOW.md` for the human-facing p
 Install Copier, then generate a new project from this repository:
 
 ```bash
-copier copy /path/to/_ai_project_template /path/to/new-project
+copier copy /path/to/_ai_python_project_template /path/to/new-project
 ```
 
 Copier will prompt for a small set of values:
