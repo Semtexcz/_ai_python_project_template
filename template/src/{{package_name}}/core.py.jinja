@@ -1,0 +1,17 @@
+"""Core application behavior."""
+
+from dataclasses import dataclass
+
+from .config import AppConfig
+
+
+@dataclass(frozen=True)
+class RunResult:
+    """Result returned by the starter application service."""
+
+    message: str
+
+
+def run_application(config: AppConfig) -> RunResult:
+    """Run the starter application service."""
+    return RunResult(message=f"{config.name} running in {config.environment}")

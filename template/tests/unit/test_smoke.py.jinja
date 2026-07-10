@@ -1,10 +1,53 @@
-"""Smoke tests for the generated CLI entry point."""
+"""Smoke tests for the generated project profile."""
 
+{% if project_kind == "cli" -%}
+from typer.testing import CliRunner
+
+from {{ package_name }} import __version__
+from {{ package_name }}.main import app
+
+
+def test_cli_version() -> None:
+    runner = CliRunner()
+    result = runner.invoke(app, ["--version"])
+    assert result.exit_code == 0
+    assert __version__ in result.output
+
+
+def test_cli_runs() -> None:
+    runner = CliRunner()
+    result = runner.invoke(app, [])
+    assert result.exit_code == 0
+    assert "{{ project_name }} running in development" in result.output
+{%- elif project_kind == "api" -%}
+from {{ package_name }}.main import create_app
+
+
+def test_api_healthcheck() -> None:
+    app = create_app()
+    route = next(route for route in app.routes if getattr(route, "path", None) == "/health")
+    response = route.endpoint()
+    assert response["status"] == "ok"
+{%- elif project_kind == "tui" -%}
+from {{ package_name }}.main import ProjectApp
+
+
+def test_tui_app_constructs() -> None:
+    app = ProjectApp()
+    assert app.TITLE == "{{ project_name }}"
+{%- else -%}
+from {{ package_name }}.config import load_config
+from {{ package_name }}.core import run_application
 from {{ package_name }}.main import main
 
 
+def test_core_runs() -> None:
+    result = run_application(load_config())
+    assert result.message == "{{ project_name }} running in development"
+
+
 def test_main_runs(capsys) -> None:
-    """The starter CLI should execute without errors."""
     main()
     captured = capsys.readouterr()
-    assert "{{ project_name }} running" in captured.out
+    assert "{{ project_name }} running in development" in captured.out
+{%- endif %}

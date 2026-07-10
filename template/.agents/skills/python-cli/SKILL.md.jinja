@@ -16,3 +16,14 @@ Keep command-line entry points simple.
 - Use `argparse` only when a stdlib-only CLI is explicitly preferred or the existing codebase already uses it.
 - Keep Typer usage thin and push business logic below the command layer.
 - Keep exit codes and error messages predictable.
+- Keep `script` profile commands stdlib-first.
+- Keep `cli` profile commands focused on Typer/Rich presentation.
+
+## Commands
+
+```bash
+make test
+uv run pytest tests/unit/test_smoke.py
+uv run {{ project_slug }} --help
+uv run {{ project_slug }} --version
+```

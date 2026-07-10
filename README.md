@@ -1,6 +1,6 @@
 # AI Project Template
 
-Reusable Copier template for AI-first Python projects with a compact uv package, pytest validation, and structured product, architecture, and task documentation.
+Reusable Copier template for AI-first Python projects with profile-based runtime scaffolding, a compact uv package, pytest validation, and structured product, architecture, and task documentation.
 
 The generated project is intentionally compact. It gives AI coding agents enough workflow, architecture, and planning context to build in scoped increments without inventing process from scratch.
 
@@ -41,6 +41,7 @@ Copier asks for:
 - `project_slug`
 - `package_name`
 - `project_description`
+- `project_kind` (`script`, `cli`, `library`, `api`, or `tui`)
 - `author_name`
 - `author_email`
 - `python_version`
@@ -59,6 +60,12 @@ The generated project includes:
 - `CHANGELOG.md` for user-visible project changes
 - `src/` and `tests/` for implementation and validation
 - uv, ruff, mypy, pre-commit, and GitHub Actions configuration
+- profile-specific starter code and dependencies:
+  - `script`: stdlib-first command script
+  - `cli`: Typer and Rich command-line app
+  - `library`: importable package without a console script
+  - `api`: FastAPI app with a health check
+  - `tui`: Textual and Rich terminal UI
 
 The actual generated project files live in `template/`. Root-level files describe and maintain this Copier template repository.
 

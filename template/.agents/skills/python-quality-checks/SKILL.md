@@ -17,6 +17,10 @@ Use Ruff for linting and formatting.
 ## Commands
 
 ```bash
+make check
+make lint
+make format-check
+make format
 uv run ruff check .
 uv run ruff check . --fix
 uv run ruff format --check .

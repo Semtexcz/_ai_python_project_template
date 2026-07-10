@@ -1,3 +1,15 @@
+## [0.6.0] - 2026-07-10
+
+### Added
+
+- Added the `project_kind` Copier option with `script`, `cli`, `library`, `api`, and `tui` generated project profiles.
+- Added profile-specific runtime scaffolding, dependencies, starter tests, documentation, and agent skills.
+- Added generated project Makefile commands, `.env.example`, package execution via `python -m`, coverage configuration, and release guidance.
+
+### Changed
+
+- Updated generated CI, pre-commit, scripts, README, and agent instructions to use the shared profile-aware validation workflow.
+
 ## [0.5.3] - 2026-07-08
 
 ### Fixed

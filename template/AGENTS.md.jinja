@@ -25,6 +25,7 @@ Use this file for repository-wide rules only. Use `.agents/skills/` for task-spe
 - Linting and formatting: `ruff`
 - Tests: `pytest`
 - Type checking: `mypy` by default
+- Project profile: `{{ project_kind }}`
 - CI should run install, lint, format check, typecheck, and tests.
 
 ## Context Loading
@@ -56,19 +57,30 @@ For implementation work:
 
 1. Identify the smallest useful outcome.
 2. Check whether a no-op is valid.
-3. Read the relevant skill.
+3. Identify the project profile and read the relevant skill.
 4. Make the smallest safe change.
 5. Add or update tests for behavior changes.
 6. Run the narrowest useful verification first.
 7. Report changed files, checks run, skipped checks, and remaining risks.
+
+Profile-specific skills:
+
+- `script`: use `python-cli` for command behavior and keep dependencies stdlib-first.
+- `cli`: use `python-cli` for Typer/Rich command behavior.
+- `library`: use `python-typing`, `python-pytest`, and `python-release` for public API changes.
+- `api`: use `python-api` for FastAPI routes, health checks, and test clients.
+- `tui`: use `python-tui` for Textual UI behavior.
 
 ## Commands
 
 Prefer project commands if present:
 
 ```bash
-just test
+make check
 make test
+make typecheck
+make format-check
+just test
 ```
 
 Fallback commands:

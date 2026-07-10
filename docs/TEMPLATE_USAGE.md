@@ -23,9 +23,22 @@ Copier will prompt for a small set of values:
 - `project_slug` — repository and CLI-facing slug
 - `package_name` — Python package name under `src/`
 - `project_description` — short summary for README and package metadata
+- `project_kind` — runtime profile: `script`, `cli`, `library`, `api`, or `tui`
 - `author_name` and `author_email` — package metadata
 - `python_version` — shared Python version for tooling and CI
 - `initial_version` — initial package version
+
+## Project Profiles
+
+The template keeps project identity parameters small, but `project_kind` changes the generated runtime shape:
+
+- `script` generates a stdlib-first console command for small automations.
+- `cli` generates a Typer and Rich command-line app and is the default.
+- `library` generates an importable package without a console script.
+- `api` generates a FastAPI app with a deterministic `/health` endpoint.
+- `tui` generates a Textual terminal UI shell.
+
+Every profile keeps the same uv, Ruff, mypy, pytest, pre-commit, CI, product, architecture, and agent workflow baseline.
 
 ## Update an Existing Generated Project
 
@@ -59,12 +72,19 @@ Kept static on purpose:
 - uv-based tooling layout
 - CI baseline
 
+Parameterized only where the generated runtime materially differs:
+
+- runtime dependencies
+- console script generation
+- starter tests
+- README start commands
+
 Not parameterized on purpose:
 
 - feature/task naming conventions
 - documentation directory structure
 - testing strategy shape
-- language or framework selection
+- language outside Python
 
 If broader customization becomes necessary, prefer adding a second specialized template rather than turning this one into a highly branched meta-template.
 

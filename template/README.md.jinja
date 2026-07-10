@@ -2,6 +2,8 @@
 
 {{ project_description }}.
 
+Project profile: `{{ project_kind }}`
+
 ## Structure
 
 - `product/` — features, PRDs, user stories
@@ -26,17 +28,34 @@ For the full human-oriented playbook, see `docs/WORKFLOW.md`.
 
 ```bash
 uv sync
-uv run pytest
+make check
+{% if project_kind == "library" -%}
+uv run python -c "from {{ package_name }}.config import load_config; from {{ package_name }}.core import run_application; print(run_application(load_config()).message)"
+{% else -%}
 uv run {{ project_slug }}
+{% endif -%}
 ```
+
+{% if project_kind == "script" -%}
+This project is generated as a stdlib-first script profile. Keep dependencies minimal and put reusable behavior below the command entry point.
+{% elif project_kind == "cli" -%}
+This project is generated as a Typer/Rich CLI profile. Use `uv run {{ project_slug }} --help` and `uv run {{ project_slug }} --version` to inspect the command surface.
+{% elif project_kind == "library" -%}
+This project is generated as a library profile. It does not expose a console script by default; import package behavior from `{{ package_name }}` modules.
+{% elif project_kind == "api" -%}
+This project is generated as a FastAPI profile. The starter app exposes `GET /health`; run `uv run {{ project_slug }}` for a local development server.
+{% elif project_kind == "tui" -%}
+This project is generated as a Textual TUI profile. Run `uv run {{ project_slug }}` to start the terminal UI.
+{% endif %}
 
 ## Common Commands
 
 ```bash
-uv run ruff check .
-uv run ruff format .
-uv run mypy src
-uv run pytest
+make sync
+make check
+make format
+make coverage
+make build
 ```
 
 ## Update From Template

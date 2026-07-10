@@ -1,0 +1,26 @@
+---
+name: python-api
+description: Use when adding or changing FastAPI routes, request handling, health checks, or API tests.
+---
+
+# Python API
+
+Keep HTTP transport code thin and push behavior into testable services.
+
+## Rules
+
+- Keep route handlers small and explicit.
+- Validate inputs at the API boundary.
+- Keep network calls timeout-bound and error-aware.
+- Prefer deterministic app-factory tests for starter behavior.
+- Use an ASGI test client only when request/response integration behavior matters.
+- Do not start live servers in unit tests.
+- Keep health checks deterministic and dependency-light.
+
+## Commands
+
+```bash
+make test
+uv run pytest tests/unit/test_smoke.py
+uv run {{ project_slug }}
+```

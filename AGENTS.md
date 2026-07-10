@@ -24,7 +24,7 @@ For template changes, read:
 2. `README.md`
 3. `docs/TEMPLATE_USAGE.md` when generation or update behavior changes
 4. `copier.yml` when file placement, template variables, or exclusions change
-5. `template/AGENTS.md` when generated agent behavior changes
+5. `template/AGENTS.md.jinja` when generated agent behavior changes
 
 Do not read every generated project document by default.
 

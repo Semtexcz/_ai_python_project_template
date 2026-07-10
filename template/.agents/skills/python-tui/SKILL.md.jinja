@@ -1,0 +1,24 @@
+---
+name: python-tui
+description: Use when adding or changing Textual terminal UI screens, widgets, or presentation behavior.
+---
+
+# Python TUI
+
+Keep Textual UI code focused on presentation and interaction.
+
+## Rules
+
+- Keep business logic outside Textual widgets.
+- Keep widgets small and named by user-facing purpose.
+- Test application construction without requiring a live terminal session.
+- Avoid live network or model calls from UI tests.
+- Use Rich/Textual components before custom terminal control code.
+
+## Commands
+
+```bash
+make test
+uv run pytest tests/unit/test_smoke.py
+uv run {{ project_slug }}
+```

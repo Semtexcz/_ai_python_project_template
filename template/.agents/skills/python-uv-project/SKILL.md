@@ -21,6 +21,8 @@ Use `uv` for dependency and environment management.
 ## Checks
 
 ```bash
+make sync
+make check
 uv sync
 uv run pytest
 ```

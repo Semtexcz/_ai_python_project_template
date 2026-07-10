@@ -19,6 +19,8 @@ Write tests around observable behavior.
 ## Commands
 
 ```bash
+make test
+make coverage
 uv run pytest
 uv run pytest tests/path/test_file.py
 uv run pytest tests/path/test_file.py::test_name

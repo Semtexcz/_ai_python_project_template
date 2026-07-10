@@ -18,6 +18,17 @@ project_description:
   help: Short description used in package metadata and docs.
   default: AI-first engineering project
 
+project_kind:
+  type: str
+  help: Project profile used to generate runtime code and dependencies.
+  default: cli
+  choices:
+    - script
+    - cli
+    - library
+    - api
+    - tui
+
 author_name:
   type: str
   help: Author name for package metadata.
